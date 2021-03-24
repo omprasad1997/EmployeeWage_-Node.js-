@@ -35,6 +35,37 @@ function getWorkingHours(empCheck){
 }
 
 let empWage = calcDailyWage(totalEmpHrs);
-console.log("Total Days:"+totalWorkingDays+
-" Total Hrs:" + totalEmpHrs + " Emp Wage:" + empWage);
+
+let totalEmpWage = 0;
+function sum(dailyWage){
+   totalEmpWage+=dailyWage;
+}
+empDailyWageArr.forEach(sum);
+console.log("UC7A-Total Days:"+totalWorkingDays+
+" Total Hrs:" + totalEmpHrs + " Emp Wage:" + totalEmpWage);
+
+function totalWages(totalWage,dailyWage){
+      return totalWage + dailyWage;
+}
+
+console.log("UC7A-Emp wage with reduce: "+
+                  empDailyWageArr.reduce(totalWages,0));
+
+let dailyCntr = 0;
+function mapDayWithWage(dailyWage){
+   dailyCntr++;
+   return dailyCntr + " = " + dailyWage;
+}
+
+let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
+console.log("UC7B - Daily Wage Map");
+console.log(mapDayWithWageArr);
+
+function fulltimeWage(dailyWage){
+   return dailyWage.includes(MAX_HRS_IN_MONTH);
+}
+
+let fullDayWageArr = mapDayWithWageArr.filter(fulltimeWage);
+console.log("UC7C - Daily Wage filter when fulltime wage earned");
+console.log(fullDayWageArr);
 
