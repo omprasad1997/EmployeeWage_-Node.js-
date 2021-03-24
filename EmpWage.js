@@ -62,10 +62,39 @@ console.log("UC7B - Daily Wage Map");
 console.log(mapDayWithWageArr);
 
 function fulltimeWage(dailyWage){
-   return dailyWage.includes(MAX_HRS_IN_MONTH);
+   return dailyWage.includes("160");
 }
 
 let fullDayWageArr = mapDayWithWageArr.filter(fulltimeWage);
 console.log("UC7C - Daily Wage filter when fulltime wage earned");
 console.log(fullDayWageArr);
+
+
+function findFulltimeWage(dailyWage){
+   return dailyWage.includes("160");
+}
+
+console.log("UC7D - First time Fulltime wage was earned on day:"+ 
+                     mapDayWithWageArr.find(findFulltimeWage));
+
+function isAllFulltimeWage(dailyWage){
+   return dailyWage.includes(160);
+}
+
+console.log("UC7E - Check All element have full time wage: "+
+                  fullDayWageArr.every(isAllFulltimeWage));
+
+function isAnyPartTimeWage(dailyWage){
+   return dailyWage.includes(80);
+}
+console.log("UC7F - Check if any part time wage: "+
+                  mapDayWithWageArr.some(isAnyPartTimeWage));
+
+function totalDaysWorked(numOfDays,dailyWage){
+   if(dailyWage > 0) return numOfDays+1;
+   return numOfDays;
+}
+
+console.log("UC7G - Number of Days Emp Worked: " + 
+            empDailyWageArr.reduce(totalDaysWorked,0));
 
